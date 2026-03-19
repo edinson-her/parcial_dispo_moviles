@@ -6,6 +6,7 @@ class MovieModel {
   String director;
   String runningTime;
   String? image;
+  String releaseDate;
 
   MovieModel({
     required this.id,
@@ -15,6 +16,7 @@ class MovieModel {
     required this.director,
     required this.runningTime,
     required this.image,
+    required this.releaseDate,
   });
 
   factory MovieModel.fromJson(Map<String, dynamic> json) {
@@ -26,6 +28,7 @@ class MovieModel {
       director: json['director'] ?? '',
       runningTime: json['running_time'] ?? '',
       image: json["image"] ?? '',
+      releaseDate: json['release_date'] ?? '',
     );
   }
 }

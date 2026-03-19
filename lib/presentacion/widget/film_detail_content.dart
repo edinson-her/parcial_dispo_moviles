@@ -16,7 +16,7 @@ class FilmDetailContent extends StatelessWidget {
             Image.network(
               data.image!,
               width: double.infinity,
-              height: 300,
+              height: 450,
               fit: BoxFit.cover,
               errorBuilder: (context, error, stackTrace) {
                 return Container(
@@ -61,6 +61,25 @@ class FilmDetailContent extends StatelessWidget {
                       ),
                     ],
                   ),
+                if (data.releaseDate.isNotEmpty)
+                  Row(
+                    children: [
+                      const Icon(
+                        Icons.date_range,
+                        size: 20,
+                        color: Colors.grey,
+                      ),
+                      const SizedBox(width: 8),
+                      Text(
+                        data.releaseDate,
+                        style: const TextStyle(
+                          fontSize: 14,
+                          color: Colors.grey,
+                        ),
+                      ),
+                    ],
+                  ),
+
                 const SizedBox(height: 12),
                 if (data.originalTitle.isNotEmpty)
                   Text(
