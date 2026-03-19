@@ -1,3 +1,6 @@
+import 'package:api/api/models/movie_model.dart';
+import 'package:api/api/service/movies_service.dart';
+import 'package:api/config/router/router.dart';
 import 'package:api/presentacion/widget/layout/drawer_custom.dart';
 import 'package:flutter/material.dart';
 
@@ -7,9 +10,49 @@ class FilmsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("FILMS")),
+      appBar: AppBar(title: Text("Films")),
       drawer: DrawerCustom(),
-      body: Center(child: Text("FILMS SCREEN")),
+      body: FutureBuilder(
+        future: MoviesService().getFilms(),
+        builder: (_, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return Center(child: CircularProgressIndicator());
+          } else if (snapshot.hasError) {
+            return Center(child: Text("No Disponible"));
+          } else if (snapshot.hasData) {
+            final List<MovieModel> data = snapshot.data!;
+            return ListView.builder(
+              itemCount: data.length,
+              itemBuilder: (context, index) {
+                final images = data[index].image;
+                final firstImage = (images != null && images.isNotEmpty)
+                    ? images[0]
+                    : null;
+                return ListTile(
+                  onTap: () => {router.push('/films/${data[index].id}')},
+                  title: Text(data[index].title),
+                  subtitle: Text(data[index].description),
+                  leading: SizedBox(
+                    width: 50,
+                    height: 80,
+                    child: firstImage != null
+                        ? Image.network(
+                            firstImage,
+                            fit: BoxFit.cover,
+                            errorBuilder: (context, error, stackTrace) {
+                              return Icon(Icons.movie);
+                            },
+                          )
+                        : Icon(Icons.movie),
+                  ),
+                );
+              },
+            );
+          } else {
+            return Text("No Disponible");
+          }
+        },
+      ),
     );
   }
 }

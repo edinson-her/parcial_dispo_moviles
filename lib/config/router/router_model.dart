@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 class RouterModel {
@@ -6,6 +7,7 @@ class RouterModel {
   String description;
   String patch;
   GoRouterWidgetBuilder widget;
+  IconData? icon;
 
   RouterModel({
     required this.name,
@@ -13,5 +15,6 @@ class RouterModel {
     required this.description,
     required this.patch,
     required this.widget,
+    this.icon,
   });
 }

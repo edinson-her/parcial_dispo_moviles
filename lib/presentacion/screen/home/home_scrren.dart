@@ -7,31 +7,40 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("HOME")),
+      appBar: AppBar(
+        title: Text("Home"),
+        leading: Builder(
+          builder: (context) => IconButton(
+            icon: Icon(Icons.home),
+            onPressed: () {
+              Scaffold.of(context).openDrawer();
+            },
+          ),
+        ),
+      ),
       drawer: DrawerCustom(),
       body: Column(
         children: [
-          SizedBox(height: 30),
+          SizedBox(height: 120),
           Padding(
             padding: EdgeInsets.all(20),
             child: Text(
-              "PRIMER PARCIAL DE DISPOSITIVOS MOVILES",
+              "PRIMER PARCIAL \n DISPOSITIVOS MOVILES",
               textAlign: TextAlign.center,
               style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             ),
           ),
-          SizedBox(height: 50),
           Expanded(
             child: Center(
               child: Column(
                 children: [
                   Text(
-                    "EDINSON ANDRES HERNANDEZ ORTEGA - 192363",
+                    "192363 - EDINSON ANDRES HERNANDEZ ORTEGA ",
                     textAlign: TextAlign.center,
                   ),
                   SizedBox(height: 10),
                   Text(
-                    "JOHAN SEBASTIAN QUINTERO CASTILLA - 192376",
+                    "192376 - JOHAN SEBASTIAN QUINTERO CASTILLA",
                     textAlign: TextAlign.center,
                   ),
                   SizedBox(height: 20),
