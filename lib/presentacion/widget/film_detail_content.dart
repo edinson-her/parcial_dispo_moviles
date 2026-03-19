@@ -8,16 +8,13 @@ class FilmDetailContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final firstImage = (data.image != null && data.image!.isNotEmpty)
-        ? data.image![0]
-        : null;
     return SingleChildScrollView(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          if (firstImage != null)
+          if (data.image != null && data.image!.isNotEmpty)
             Image.network(
-              firstImage,
+              data.image!,
               width: double.infinity,
               height: 300,
               fit: BoxFit.cover,
@@ -50,29 +47,28 @@ class FilmDetailContent extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 12),
+                if (data.runningTime.isNotEmpty)
+                  Row(
+                    children: [
+                      const Icon(Icons.schedule, size: 20, color: Colors.grey),
+                      const SizedBox(width: 8),
+                      Text(
+                        data.runningTime,
+                        style: const TextStyle(
+                          fontSize: 14,
+                          color: Colors.grey,
+                        ),
+                      ),
+                    ],
+                  ),
+                const SizedBox(height: 12),
                 if (data.originalTitle.isNotEmpty)
                   Text(
-                    '${data.originalTitle} • ${data.director}',
+                    'Nombre Original: ${data.originalTitle} \nDirector: ${data.director}',
                     style: TextStyle(
                       fontSize: 16,
                       color: Colors.grey[600],
                       fontStyle: FontStyle.italic,
-                    ),
-                  ),
-                const SizedBox(height: 8),
-                if (data.runningTime.isNotEmpty)
-                  Container(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 12,
-                      vertical: 6,
-                    ),
-                    decoration: BoxDecoration(
-                      color: Colors.grey[200],
-                      borderRadius: BorderRadius.circular(4),
-                    ),
-                    child: Text(
-                      '⏱ ${data.runningTime}',
-                      style: const TextStyle(fontSize: 14),
                     ),
                   ),
                 const SizedBox(height: 16),

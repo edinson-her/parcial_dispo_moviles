@@ -1,6 +1,5 @@
 import 'package:api/config/router/router_model.dart';
 import 'package:api/presentacion/screen/films/films_screen.dart';
-import 'package:api/presentacion/screen/films/films_detail_screen.dart';
 import 'package:api/presentacion/screen/home/home_scrren.dart';
 import 'package:flutter/material.dart';
 

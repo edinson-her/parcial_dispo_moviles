@@ -24,10 +24,6 @@ class FilmsScreen extends StatelessWidget {
             return ListView.builder(
               itemCount: data.length,
               itemBuilder: (context, index) {
-                final images = data[index].image;
-                final firstImage = (images != null && images.isNotEmpty)
-                    ? images[0]
-                    : null;
                 return ListTile(
                   onTap: () => {router.push('/films/${data[index].id}')},
                   title: Text(data[index].title),
@@ -35,15 +31,15 @@ class FilmsScreen extends StatelessWidget {
                   leading: SizedBox(
                     width: 50,
                     height: 80,
-                    child: firstImage != null
+                    child: data[index].image != null && data[index].image!.isNotEmpty
                         ? Image.network(
-                            firstImage,
+                            data[index].image!,
                             fit: BoxFit.cover,
                             errorBuilder: (context, error, stackTrace) {
-                              return Icon(Icons.movie);
+                              return const Icon(Icons.movie);
                             },
                           )
-                        : Icon(Icons.movie),
+                        : const Icon(Icons.movie),
                   ),
                 );
               },

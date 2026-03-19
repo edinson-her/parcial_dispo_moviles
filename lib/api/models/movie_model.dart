@@ -5,7 +5,7 @@ class MovieModel {
   String description;
   String director;
   String runningTime;
-  List<String>? image;
+  String? image;
 
   MovieModel({
     required this.id,
@@ -25,7 +25,7 @@ class MovieModel {
       description: json['description'] ?? '',
       director: json['director'] ?? '',
       runningTime: json['running_time'] ?? '',
-      image: List<String>.from(json["images"] ?? []),
+      image: json["image"] ?? '',
     );
   }
 }
